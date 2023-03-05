@@ -1,12 +1,16 @@
 const express = require('express')
 const app = express()
 const path = require('path')
-const PORT = process.env.PORT || 3500
+
 const { logger } = require('./middleware/logger')
+const errorHandler = require('./middleware/errorHandler')
+const cookieParser = require('cookie-parser')
+
+const PORT = process.env.PORT || 3500
 
 app.use(logger) 
-
 app.use(express.json())
+app.use(cookieParser())
 
 app.use('/', express.static(path.join(__dirname, 'public'))) // __dirname is a global variable (look in folder we are in). 
 
@@ -24,6 +28,9 @@ app.all('*', (req, res) => {
     res.type('txt').send('404 Not Found')
   }
 })
+
+// error handler
+app.use(errorHandler)
 
 // will point to the server destination 
 app.listen(PORT, () => console.log(`Server available at http://localhost:${PORT}`))
