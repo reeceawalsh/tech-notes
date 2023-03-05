@@ -5,6 +5,7 @@ const fsPromises = require('fs').promises
 const path = require('path')
 
 // \t = tab | \n = new line 
+// logItem is the log message (date, time, unique log id, the request)
 const logEvents = async (message, logFileName) => {
   const dateTime = format(new Date(), 'ddMMyyyy\tHH:mm:ss')
   const logItem = `${dateTime}\t${uuid()}\t${message}\n`
