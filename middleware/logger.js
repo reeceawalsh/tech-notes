@@ -7,7 +7,7 @@ const path = require('path')
 // \t = tab | \n = new line 
 // logItem is the log message (date, time, unique log id, the request)
 const logEvents = async (message, logFileName) => {
-  const dateTime = format(new Date(), 'ddMMyyyy\tHH:mm:ss')
+  const dateTime = format(new Date(), 'dd-MM-yyyy\tHH:mm:ss')
   const logItem = `${dateTime}\t${uuid()}\t${message}\n`
 
   // creates a logs folder if it doesn't exist then adds a log file to the folder

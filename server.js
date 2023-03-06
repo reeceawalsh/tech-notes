@@ -23,7 +23,7 @@ app.use(cookieParser())
 app.use('/', express.static(path.join(__dirname, 'public'))) // __dirname is a global variable (look in folder we are in). 
 
 app.use('/', require('./routes/root')) // looking for routes folder and root file
-
+app.use('/users', require('./routes/userRoutes'))
 // deals with everything that didn't match anything above
 // this code should be at the end of the routes but before the app.listen
 app.all('*', (req, res) => {
